@@ -1,3 +1,5 @@
+Camera : /husky/camera1/image_raw 
+Lidar  : /husky/laser/scan
 husky
 =====
 
