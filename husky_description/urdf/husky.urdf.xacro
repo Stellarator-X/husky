@@ -154,7 +154,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <joint name="camera_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="${base_x_size/2 - camera_link} 0 ${base_z_size+5*camera_link}" rpy="0 0 0"/>
+    <origin xyz="${base_x_size/2 - camera_link} 0 ${base_z_size+5.5*camera_link}" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
   </joint>
@@ -230,7 +230,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- LIDAR -->
   <joint name="hokuyo_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="${base_x_size/2} 0 ${base_z_size+0.1}" rpy="0 0 0"/>
+    <origin xyz="${base_x_size/2 - camera_link} 0 ${base_z_size+4*camera_link}" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="hokuyo_link"/>
   </joint>
@@ -268,10 +268,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <ray>
         <scan>
           <horizontal>
-            <samples>720</samples>
+            <samples>360</samples>
             <resolution>1</resolution>
-            <min_angle>-1.570796</min_angle>
-            <max_angle>1.570796</max_angle>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
           </horizontal>
         </scan>
         <range>
