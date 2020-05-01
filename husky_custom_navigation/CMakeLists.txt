@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(husky_custom_navigation)
 add_compile_options(-std=c++11)
+find_package(PythonLibs 2.7)
+
 
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -207,3 +209,11 @@ include_directories(
 
 add_executable(random_driver random_driver.cpp)
 target_link_libraries(random_driver ${catkin_LIBRARIES})
+
+
+add_executable(lidar_subscriber lidar_subscriber.cpp)
+
+
+target_include_directories(lidar_subscriber PRIVATE ${Python_INCLUDE_DIRS})
+target_link_libraries(lidar_subscriber ${catkin_LIBRARIES} ${PYHTON_LIBRARIES})
+
