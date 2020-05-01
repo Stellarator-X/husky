@@ -9,7 +9,7 @@ using namespace std;
 
 vector<float> lidar_data(360);
 const float MAX_VEL = 2;
-const float MAX_OMEGA = 0.1;
+const float MAX_OMEGA = 0.15;
 
 
 float get_steering_msg(vector<float> lidar_dat, float goal_angle){
