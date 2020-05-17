@@ -2,6 +2,8 @@
 #include <std_msgs/String.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <queue>
 #include <stdlib.h>
 #include "GaussianPF_PathPlanning.cpp"
 
@@ -9,8 +11,9 @@ using namespace std;
 
 vector<float> lidar_data(360);
 const float MAX_VEL = 2;
-const float MAX_OMEGA = 0.15;
+const float MAX_OMEGA = 0.2;
 
+queue<pair<float, float>> NavGoals; // Constainer for navigation goals
 
 float get_steering_msg(vector<float> lidar_dat, float goal_angle){
     // std::reverse(lidar_dat.begin(), lidar_dat.end());
@@ -29,6 +32,15 @@ void lidarCallback(const sensor_msgs::LaserScan::ConstPtr& scan){ // Returns the
     lidar_data = scan->ranges;
     assert(lidar_data.size() == 360); // Ensuring that the lidar data has been successfully recvd. Replace 360 with 360/(Angular least count for lidar)
     cout << "Lidar data recvd:\n";
+}
+
+void navGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr& pos){
+    // Calculate the goal angle, store the navigation goal in a queue
+    float x = pos.pose.position.x;
+    float y = pos.pose.position.y;
+
+    NavGoals.push(make_pair(x, y));;
+
 }
 
 
@@ -50,7 +62,7 @@ int main(int argc, char** argv){
         msg.angular.z = get_steering_msg(lidar_data, goal_angle);
         lid_pub.publish(msg);
         ros::spinOnce();
-        rate.sleep();
+        rate.sleep();   
     }
 
     return 0;

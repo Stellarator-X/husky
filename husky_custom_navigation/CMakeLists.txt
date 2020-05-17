@@ -211,9 +211,12 @@ add_executable(random_driver random_driver.cpp)
 target_link_libraries(random_driver ${catkin_LIBRARIES})
 
 
-add_executable(lidar_subscriber lidar_subscriber.cpp)
+add_executable(random_explorer random_explorer.cpp)
 
+target_include_directories(random_explorer PRIVATE ${Python_INCLUDE_DIRS})
+target_link_libraries(random_explorer ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
 
-target_include_directories(lidar_subscriber PRIVATE ${Python_INCLUDE_DIRS})
-target_link_libraries(lidar_subscriber ${catkin_LIBRARIES} ${PYHTON_LIBRARIES})
+add_executable(goal_navigation goal_navigation.cpp)
 
+target_include_directories(goal_navigation PRIVATE ${Python_INCLUDE_DIRS})
+target_link_libraries(goal_navigation ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
