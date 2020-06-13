@@ -216,7 +216,7 @@ add_executable(random_explorer random_explorer.cpp)
 target_include_directories(random_explorer PRIVATE ${Python_INCLUDE_DIRS})
 target_link_libraries(random_explorer ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
 
-add_executable(goal_navigation goal_navigation.cpp)
+# add_executable(goal_navigation goal_navigation.cpp)
 
-target_include_directories(goal_navigation PRIVATE ${Python_INCLUDE_DIRS})
-target_link_libraries(goal_navigation ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
+# target_include_directories(goal_navigation PRIVATE ${Python_INCLUDE_DIRS})
+# target_link_libraries(goal_navigation ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
